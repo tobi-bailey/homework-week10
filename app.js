@@ -54,16 +54,14 @@ function newMember(){
     ]
   })
   .then(function(response){
-    // const employeeType = { ...employeeType };
-    if (response.Engineer = true) {
+    if (response.employeeType === "Engineer") {
       newEngineer()
     }
-    if (response.Intern = true) {
+    else if (response.employeeType === "Intern") {
       newIntern()
     }
-    if (response.Done = true) {
-      renderResults()
-    }
+    else if (response.employeeType === "Done"){
+      renderResults()}  
   })
 }
 function newEngineer(){
@@ -124,6 +122,8 @@ function newIntern(){
     newMember()
   })
 };
-// function renderResults(){
-//   fs.writeFile("./output/team.html", render(team))
-// };
+
+const directory = path.join(__dirname, "output","team.html") 
+function renderResults(){
+  fs.writeFileSync(directory, render(team))
+};
